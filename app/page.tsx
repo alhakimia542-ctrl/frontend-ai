@@ -147,7 +147,7 @@ export default function Home() {
               inputRef={inputRef}
               inputFocused={inputFocused}
               setInputFocused={setInputFocused}
-              disabled={status === "loading"}
+              disabled={false}
             />
 
             <div className="flex flex-wrap justify-center gap-2 max-w-xl">
