@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import AuthButton from "../components/AuthButton";
 import HistorySidebar, { ChatSession } from "../components/HistorySidebar";
 import { onAuthStateChanged, User } from "firebase/auth";
@@ -467,19 +469,73 @@ export default function Home() {
 
 // ─── Answer Content ───────────────────────────────────────────────────────────
 function AnswerContent({ answer }: { answer: string }) {
-  // Render answer preserving newlines as paragraphs
-  const paragraphs = answer.split(/\n{2,}/).filter(Boolean);
   return (
-    <div className="space-y-3">
-      {paragraphs.length > 0
-        ? paragraphs.map((para, i) => (
-            <p key={i} className="text-zinc-300 leading-relaxed whitespace-pre-wrap">
-              {para}
-            </p>
-          ))
-        : <p className="text-zinc-300 leading-relaxed whitespace-pre-wrap">{answer}</p>
-      }
-    </div>
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      className="text-zinc-300 leading-relaxed space-y-3"
+      components={{
+        // Headings
+        h1: ({ children }) => <h1 className="text-2xl font-bold text-white mt-4 mb-2">{children}</h1>,
+        h2: ({ children }) => <h2 className="text-xl font-semibold text-white mt-4 mb-2">{children}</h2>,
+        h3: ({ children }) => <h3 className="text-lg font-semibold text-zinc-100 mt-3 mb-1">{children}</h3>,
+        // Paragraph
+        p: ({ children }) => <p className="text-zinc-300 leading-relaxed mb-3 last:mb-0">{children}</p>,
+        // Bold / italic
+        strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+        em: ({ children }) => <em className="italic text-zinc-200">{children}</em>,
+        // Inline code
+        code: ({ className, children, ...props }) => {
+          const isBlock = className?.includes("language-");
+          return isBlock ? (
+            <code className={`block bg-white/[0.06] border border-white/[0.08] rounded-lg px-4 py-3 text-sm font-mono text-violet-300 overflow-x-auto my-3 ${className}`} {...props}>
+              {children}
+            </code>
+          ) : (
+            <code className="bg-white/[0.08] text-violet-300 text-sm font-mono px-1.5 py-0.5 rounded" {...props}>
+              {children}
+            </code>
+          );
+        },
+        // Code block wrapper
+        pre: ({ children }) => <pre className="my-3 overflow-x-auto">{children}</pre>,
+        // Unordered list
+        ul: ({ children }) => <ul className="list-disc list-inside space-y-1 text-zinc-300 my-2 pl-2">{children}</ul>,
+        // Ordered list
+        ol: ({ children }) => <ol className="list-decimal list-inside space-y-1 text-zinc-300 my-2 pl-2">{children}</ol>,
+        li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+        // Blockquote
+        blockquote: ({ children }) => (
+          <blockquote className="border-l-4 border-violet-500/50 pl-4 py-1 my-3 text-zinc-400 italic bg-white/[0.02] rounded-r-lg">
+            {children}
+          </blockquote>
+        ),
+        // Links
+        a: ({ href, children }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-violet-400 hover:text-violet-300 underline underline-offset-2 transition-colors duration-150"
+          >
+            {children}
+          </a>
+        ),
+        // Horizontal rule
+        hr: () => <hr className="border-white/[0.08] my-4" />,
+        // Table
+        table: ({ children }) => (
+          <div className="overflow-x-auto my-3">
+            <table className="w-full text-sm border-collapse">{children}</table>
+          </div>
+        ),
+        thead: ({ children }) => <thead className="bg-white/[0.05]">{children}</thead>,
+        tr: ({ children }) => <tr className="border-b border-white/[0.06]">{children}</tr>,
+        th: ({ children }) => <th className="text-left px-3 py-2 text-zinc-200 font-semibold">{children}</th>,
+        td: ({ children }) => <td className="px-3 py-2 text-zinc-300">{children}</td>,
+      }}
+    >
+      {answer}
+    </ReactMarkdown>
   );
 }
 
