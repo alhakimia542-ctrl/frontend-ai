@@ -470,9 +470,9 @@ export default function Home() {
 // ─── Answer Content ───────────────────────────────────────────────────────────
 function AnswerContent({ answer }: { answer: string }) {
   return (
+    <div className="text-zinc-300 leading-relaxed space-y-3">
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      className="text-zinc-300 leading-relaxed space-y-3"
       components={{
         // Headings
         h1: ({ children }) => <h1 className="text-2xl font-bold text-white mt-4 mb-2">{children}</h1>,
@@ -536,6 +536,7 @@ function AnswerContent({ answer }: { answer: string }) {
     >
       {answer}
     </ReactMarkdown>
+    </div>
   );
 }
 
