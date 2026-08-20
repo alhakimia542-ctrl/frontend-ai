@@ -31,12 +31,6 @@ type Status = "idle" | "loading" | "success" | "error";
 // ─── Constants ────────────────────────────────────────────────────────────────
 const API_URL = "https://alhakim-ai.onrender.com/api/ask";
 
-const SUGGESTED_QUERIES = [
-  "What is quantum computing?",
-  "Explain the latest AI breakthroughs",
-  "How does the human brain work?",
-  "What are black holes?",
-];
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function Home() {
@@ -294,20 +288,7 @@ export default function Home() {
               setFocusMode={setFocusMode}
             />
 
-            <div className="flex flex-col items-center gap-4 mt-2">
-              <span className="text-xs font-medium text-zinc-500 uppercase tracking-widest">Try asking about:</span>
-              <div className="flex flex-wrap justify-center gap-3 max-w-2xl">
-                {SUGGESTED_QUERIES.map((q) => (
-                  <button
-                    key={q}
-                    onClick={() => handleSearch(q)}
-                    className="text-sm px-4 py-2.5 rounded-full border border-zinc-800 bg-transparent text-zinc-400 hover:text-zinc-200 hover:border-zinc-600 hover:bg-zinc-800/50 transition-all duration-200"
-                  >
-                    {q}
-                  </button>
-                ))}
-              </div>
-            </div>
+
           </div>
         ) : (
           /* ── Chat Thread ──────────────────────────────────────────────────── */
