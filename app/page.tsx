@@ -294,16 +294,19 @@ export default function Home() {
               setFocusMode={setFocusMode}
             />
 
-            <div className="flex flex-wrap justify-center gap-2 max-w-xl">
-              {SUGGESTED_QUERIES.map((q) => (
-                <button
-                  key={q}
-                  onClick={() => handleSearch(q)}
-                  className="text-sm px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.03] text-zinc-400 hover:text-white hover:border-violet-500/50 hover:bg-violet-500/10 transition-all duration-200"
-                >
-                  {q}
-                </button>
-              ))}
+            <div className="flex flex-col items-center gap-4 mt-2">
+              <span className="text-xs font-medium text-zinc-500 uppercase tracking-widest">Try asking about:</span>
+              <div className="flex flex-wrap justify-center gap-3 max-w-2xl">
+                {SUGGESTED_QUERIES.map((q) => (
+                  <button
+                    key={q}
+                    onClick={() => handleSearch(q)}
+                    className="text-sm px-4 py-2.5 rounded-full border border-zinc-800 bg-transparent text-zinc-400 hover:text-zinc-200 hover:border-zinc-600 hover:bg-zinc-800/50 transition-all duration-200"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         ) : (
@@ -576,9 +579,9 @@ function SourcesSkeleton() {
 
 // ─── Focus Mode Options ────────────────────────────────────────────────────────
 const FOCUS_OPTIONS = [
-  { value: "web",      label: "🌐 General Web" },
-  { value: "medical",  label: "🩺 Medical & Health" },
-  { value: "academic", label: "🎓 Academic" },
+  { value: "web",      label: "🌐 General Web", description: "Standard web search across the internet" },
+  { value: "medical",  label: "🩺 Medical & Health", description: "Searches trusted medical journals like WHO and Mayo Clinic" },
+  { value: "academic", label: "🎓 Academic", description: "Searches peer-reviewed papers and universities" },
 ] as const;
 
 // ─── Search Bar ───────────────────────────────────────────────────────────────
@@ -621,8 +624,41 @@ function SearchBar({
   focusMode,
   setFocusMode,
 }: SearchBarProps) {
+  const [showAdvanced, setShowAdvanced] = useState(false);
+
   return (
     <form onSubmit={onSubmit} className={`w-full ${compact ? "max-w-4xl" : "max-w-2xl"} mx-auto flex flex-col gap-3`}>
+      
+      {/* ── Focus Mode Tabs ── */}
+      <div
+        className="flex items-center self-center sm:self-start rounded-full border border-white/[0.08] bg-white/[0.03] p-1 mb-1"
+        role="tablist"
+        aria-label="Focus mode"
+      >
+        {FOCUS_OPTIONS.map((opt) => {
+          const isActive = focusMode === opt.value;
+          return (
+            <button
+              key={opt.value}
+              type="button"
+              role="tab"
+              title={opt.description}
+              aria-selected={isActive}
+              onClick={() => setFocusMode(opt.value)}
+              className={[
+                "flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-300",
+                isActive
+                  ? "bg-violet-600 text-white shadow-sm shadow-violet-900/50"
+                  : "text-zinc-400 hover:text-white hover:bg-white/[0.06]",
+              ].join(" ")}
+            >
+              <span>{opt.label.split(" ")[0]}</span>
+              <span className="hidden sm:inline">{opt.label.split(" ").slice(1).join(" ")}</span>
+            </button>
+          );
+        })}
+      </div>
+
       <div
         className={`relative flex items-center gap-3 rounded-2xl border transition-all duration-300 ${
           inputFocused
@@ -697,10 +733,26 @@ function SearchBar({
         </button>
       </div>
 
-      {/* Filters */}
-      <div className={`flex flex-wrap items-center gap-2 ${compact ? "px-1" : "px-2"} transition-opacity duration-300`}>
-        {/* ── Model Selector ── */}
-        <div className="relative group">
+      {/* ── Advanced Filters Toggle ── */}
+      <div className={`flex items-center ${compact ? "px-1" : "px-2"} mt-1`}>
+        <button
+          type="button"
+          onClick={() => setShowAdvanced(!showAdvanced)}
+          className="flex items-center gap-2 text-xs font-medium text-zinc-500 hover:text-zinc-300 transition-colors"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+          {showAdvanced ? "Hide Advanced Filters" : "Advanced Filters"}
+        </button>
+      </div>
+
+      {/* ── Advanced Filters ── */}
+      {showAdvanced && (
+        <div className={`flex flex-wrap items-center gap-2 ${compact ? "px-1" : "px-2"} transition-all duration-300`}>
+          {/* ── Model Selector ── */}
+          <div className="relative group">
           <select
             value={selectedModel}
             onChange={(e) => setSelectedModel(e.target.value)}
@@ -757,36 +809,8 @@ function SearchBar({
           </div>
         </div>
 
-        {/* ── Focus Mode ── */}
-        <div
-          className="flex items-center rounded-lg border border-white/[0.08] bg-white/[0.03] overflow-hidden"
-          role="group"
-          aria-label="Focus mode"
-        >
-          {FOCUS_OPTIONS.map((opt, idx) => {
-            const isActive = focusMode === opt.value;
-            return (
-              <button
-                key={opt.value}
-                type="button"
-                onClick={() => setFocusMode(opt.value)}
-                title={opt.label}
-                aria-pressed={isActive}
-                className={[
-                  "flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium transition-all duration-200 whitespace-nowrap",
-                  idx > 0 ? "border-l border-white/[0.08]" : "",
-                  isActive
-                    ? "bg-violet-600/80 text-white shadow-inner"
-                    : "text-zinc-500 hover:text-white hover:bg-white/[0.06]",
-                ].join(" ")}
-              >
-                <span>{opt.label.split(" ")[0]}</span>
-                <span className="hidden sm:inline">{opt.label.split(" ").slice(1).join(" ")}</span>
-              </button>
-            );
-          })}
         </div>
-      </div>
+      )}
     </form>
   );
 }
