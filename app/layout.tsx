@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     locale: 'ar_SA',
     siteName: 'Alhakimi AI Search',
   },
+  verification: {
+    google: "FgeZKuHM8eQS_4XOypbLIwejxmysxyqE28h-iYA71Ms",
+  },
 };
 
 export const viewport: Viewport = {
