@@ -263,10 +263,10 @@ export default function Home() {
           <div className="flex-1 flex flex-col items-center justify-center px-4 py-16 gap-10">
             <div className="text-center space-y-3">
               <h1 className="text-5xl sm:text-6xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent leading-tight">
-                Ask anything.
+                Discover knowledge intelligently.
               </h1>
               <p className="text-zinc-500 text-lg max-w-md mx-auto leading-relaxed">
-                Al-hakimi AI gives you instant, cited answers powered by real-time web intelligence.
+                An advanced AI search engine providing accurate, source-backed results in real-time.
               </p>
             </div>
 
@@ -683,7 +683,7 @@ function SearchBar({
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setInputFocused(true)}
           onBlur={() => setInputFocused(false)}
-          placeholder={disabled ? "Searching…" : "Ask Al-hakimi AI anything…"}
+          placeholder={disabled ? "Searching…" : "Type your search topic here..."}
           disabled={disabled}
           className={`flex-1 bg-transparent outline-none placeholder-zinc-600 text-white disabled:opacity-60 ${compact ? "text-sm" : "text-base"}`}
           autoComplete="off"
