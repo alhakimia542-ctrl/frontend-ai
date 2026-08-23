@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import AuthButton from "../components/AuthButton";
@@ -225,14 +226,14 @@ export default function Home() {
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/[0.06] bg-[#0d0d0d]/80 backdrop-blur-md">
         <div className="flex items-center gap-2.5">
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 shadow-lg shadow-violet-500/30">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-white">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <span className="text-lg font-semibold tracking-tight text-white hidden sm:block">
-            Al-hakimi <span className="text-violet-400">AI</span>
-          </span>
+          <Image
+            src="/logo.png"
+            alt="Alhakimi AI Search Logo"
+            width={200}
+            height={60}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </div>
 
         <nav className="flex items-center gap-3">
