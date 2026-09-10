@@ -263,9 +263,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Left Side (End): Auth */}
+        {/* Left Side (End): Auth (Temporarily Hidden) */}
         <div className="flex items-center shrink-0">
-          <AuthButton />
+          {/* <AuthButton /> */}
         </div>
       </header>
 
@@ -273,7 +273,7 @@ export default function Home() {
       <main className="flex-1 flex flex-col relative">
         {!submitted ? (
           /* ── Landing ──────────────────────────────────────────────────── */
-          <div className="flex-1 flex flex-col items-center justify-center px-4 py-16 gap-10">
+          <div className="flex-1 flex flex-col items-center justify-center px-4 pt-8 pb-32 sm:pt-16 sm:pb-48 gap-8 sm:gap-10">
             <div className="text-center px-4">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent leading-tight">
                 اكتشف المعرفة بذكاء.
