@@ -225,40 +225,48 @@ export default function Home() {
 
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-50 flex items-center justify-between gap-2 px-3 sm:px-6 py-3 sm:py-4 border-b border-white/[0.06] bg-[#0d0d0d]/80 backdrop-blur-md">
-        {/* Logo */}
-        <div className="flex items-center shrink-0">
-          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="luxury-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#F59E0B" />
-                <stop offset="50%" stopColor="#FBBF24" />
-                <stop offset="100%" stopColor="#D97706" />
-              </linearGradient>
-            </defs>
-            <rect width="36" height="36" rx="10" fill="#18181B" stroke="#27272A" strokeWidth="1.5"/>
-            <path d="M11 9V27M25 9L16 18L25 27M15 17L23 27" stroke="url(#luxury-gold)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+        {/* Right Side (Start): Logo + Actions */}
+        <div className="flex items-center gap-2 sm:gap-4">
+          {/* Logo */}
+          <div className="flex items-center shrink-0">
+            <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="luxury-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F59E0B" />
+                  <stop offset="50%" stopColor="#FBBF24" />
+                  <stop offset="100%" stopColor="#D97706" />
+                </linearGradient>
+              </defs>
+              <rect width="36" height="36" rx="10" fill="#18181B" stroke="#27272A" strokeWidth="1.5"/>
+              <path d="M11 9V27M25 9L16 18L25 27M15 17L23 27" stroke="url(#luxury-gold)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          
+          <div className="w-[1px] h-5 bg-white/10 hidden sm:block mx-1"></div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <button 
+              onClick={() => setIsSidebarOpen(true)}
+              className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              <span className="hidden xs:inline sm:inline">سجل البحث</span>
+            </button>
+            <button
+              onClick={handleNewSearch}
+              className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white transition-all duration-200 shadow-md shadow-violet-500/20"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg>
+              <span className="hidden xs:inline sm:inline">بحث جديد</span>
+            </button>
+          </div>
         </div>
 
-        {/* Nav actions */}
-        <nav className="flex items-center gap-1.5 sm:gap-3">
-          <button 
-            onClick={() => setIsSidebarOpen(true)}
-            className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            <span className="hidden xs:inline sm:inline">سجل البحث</span>
-          </button>
-          <button
-            onClick={handleNewSearch}
-            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white transition-all duration-200 shadow-md shadow-violet-500/20"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg>
-            <span className="hidden xs:inline sm:inline">بحث جديد</span>
-          </button>
-          <div className="w-[1px] h-5 bg-white/10 hidden sm:block mx-0.5"></div>
+        {/* Left Side (End): Auth */}
+        <div className="flex items-center shrink-0">
           <AuthButton />
-        </nav>
+        </div>
       </header>
 
       {/* ── Main Content ──────────────────────────────────────────────────── */}
