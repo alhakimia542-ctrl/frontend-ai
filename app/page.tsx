@@ -251,7 +251,7 @@ export default function Home() {
               className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-              <span className="hidden xs:inline sm:inline">سجل البحث</span>
+              <span>سجل البحث</span>
             </button>
             <button
               onClick={handleNewSearch}
