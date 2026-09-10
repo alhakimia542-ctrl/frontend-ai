@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
+
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import AuthButton from "../components/AuthButton";
@@ -226,14 +226,17 @@ export default function Home() {
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/[0.06] bg-[#0d0d0d]/80 backdrop-blur-md">
         <div className="flex items-center gap-2.5">
-          <Image
-            src="/logo.png"
-            alt="Alhakimi AI Search Logo"
-            width={200}
-            height={60}
-            className="h-10 w-auto object-contain"
-            priority
-          />
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="luxury-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#F59E0B" />
+                <stop offset="50%" stopColor="#FBBF24" />
+                <stop offset="100%" stopColor="#D97706" />
+              </linearGradient>
+            </defs>
+            <rect width="36" height="36" rx="10" fill="#18181B" stroke="#27272A" strokeWidth="1.5"/>
+            <path d="M11 9V27M25 9L16 18L25 27M15 17L23 27" stroke="url(#luxury-gold)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </div>
 
         <nav className="flex items-center gap-3">
