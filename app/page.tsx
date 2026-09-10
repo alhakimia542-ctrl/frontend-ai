@@ -617,7 +617,7 @@ function SearchBar({
       
       {/* ── Focus Mode Tabs ── */}
       <div
-        className="flex items-center self-center sm:self-start rounded-full border border-white/[0.08] bg-white/[0.03] p-1 mb-1 overflow-x-auto no-scrollbar"
+        className="flex flex-nowrap items-center self-center sm:self-start rounded-full border border-white/[0.08] bg-white/[0.03] p-1 mb-1 overflow-x-auto no-scrollbar max-w-full"
         role="tablist"
         aria-label="Focus mode"
       >
@@ -632,14 +632,13 @@ function SearchBar({
               aria-selected={isActive}
               onClick={() => setFocusMode(opt.value)}
               className={[
-                "flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-300",
+                "flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-300 whitespace-nowrap flex-shrink-0",
                 isActive
                   ? "bg-violet-600 text-white shadow-sm shadow-violet-900/50"
                   : "text-zinc-400 hover:text-white hover:bg-white/[0.06]",
               ].join(" ")}
             >
-              <span>{opt.label.split(" ")[0]}</span>
-              <span className="hidden sm:inline">{opt.label.split(" ").slice(1).join(" ")}</span>
+              <span>{opt.label}</span>
             </button>
           );
         })}
