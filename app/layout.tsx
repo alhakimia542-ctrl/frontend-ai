@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   verification: {
     google: "FgeZKuHM8eQS_4XOypbLIwejxmysxyqE28h-iYA71Ms",
   },
+  icons: {
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><rect width='36' height='36' rx='10' fill='%2318181B'/><path d='M11 9V27M25 9L16 18L25 27M15 17L23 27' stroke='%23FBBF24' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+  },
 };
 
 export const viewport: Viewport = {
