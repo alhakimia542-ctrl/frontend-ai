@@ -266,13 +266,10 @@ export default function Home() {
         {!submitted ? (
           /* ── Landing ──────────────────────────────────────────────────── */
           <div className="flex-1 flex flex-col items-center justify-center px-4 py-16 gap-10">
-            <div className="text-center space-y-3 px-4">
+            <div className="text-center px-4">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent leading-tight">
                 Discover knowledge intelligently.
               </h1>
-              <p className="text-zinc-500 text-sm sm:text-base lg:text-lg max-w-md mx-auto leading-relaxed">
-                An advanced AI search engine providing accurate, source-backed results in real-time.
-              </p>
             </div>
 
             <div className="w-full px-4 sm:px-0">
