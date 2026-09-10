@@ -78,13 +78,13 @@ export default function HistorySidebar({
 
       {/* Sidebar Panel */}
       <div
-        className={`fixed top-0 left-0 bottom-0 z-40 w-72 pt-[65px] bg-[#121212] border-r border-white/[0.06] shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 start-0 bottom-0 z-40 w-72 pt-[65px] bg-[#121212] border-e border-white/[0.06] shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06]">
           <h2 className="text-sm font-semibold text-white tracking-wide uppercase">
-            Chat History
+            سجل البحث
           </h2>
           <button
             onClick={onClose}
@@ -99,15 +99,15 @@ export default function HistorySidebar({
         <div className="flex-1 overflow-y-auto p-3 space-y-1">
           {!user ? (
             <div className="px-3 py-6 text-center text-sm text-zinc-500">
-              Sign in to save and view your chat history.
+              قم بتسجيل الدخول لحفظ وعرض سجل البحث الخاص بك.
             </div>
           ) : loading ? (
             <div className="px-3 py-6 text-center text-sm text-zinc-500">
-              Loading history...
+              جاري تحميل السجل...
             </div>
           ) : chats.length === 0 ? (
             <div className="px-3 py-6 text-center text-sm text-zinc-500">
-              No previous chats found.
+              لم يتم العثور على محادثات سابقة.
             </div>
           ) : (
             chats.map((chat) => (
@@ -118,7 +118,7 @@ export default function HistorySidebar({
                   // Optionally don't close automatically on desktop, but closing is fine
                   onClose();
                 }}
-                className={`w-full text-left px-3 py-3 rounded-xl text-sm transition-all duration-200 group flex items-start gap-3 ${
+                className={`w-full text-start px-3 py-3 rounded-xl text-sm transition-all duration-200 group flex items-start gap-3 ${
                   currentChatId === chat.id
                     ? "bg-violet-500/10 text-violet-300"
                     : "text-zinc-300 hover:bg-white/[0.04] hover:text-white"

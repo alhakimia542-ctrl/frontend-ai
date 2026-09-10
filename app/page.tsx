@@ -247,14 +247,14 @@ export default function Home() {
             className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            <span className="hidden xs:inline sm:inline">History</span>
+            <span className="hidden xs:inline sm:inline">سجل البحث</span>
           </button>
           <button
             onClick={handleNewSearch}
             className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white transition-all duration-200 shadow-md shadow-violet-500/20"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg>
-            <span className="hidden xs:inline sm:inline">New Search</span>
+            <span className="hidden xs:inline sm:inline">بحث جديد</span>
           </button>
           <div className="w-[1px] h-5 bg-white/10 hidden sm:block mx-0.5"></div>
           <AuthButton />
@@ -268,7 +268,7 @@ export default function Home() {
           <div className="flex-1 flex flex-col items-center justify-center px-4 py-16 gap-10">
             <div className="text-center px-4">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent leading-tight">
-                Discover knowledge intelligently.
+                اكتشف المعرفة بذكاء.
               </h1>
             </div>
 
@@ -309,12 +309,12 @@ export default function Home() {
                       <h2 className="text-xl font-semibold text-zinc-200">{msg.content}</h2>
                     </div>
                   ) : (
-                    <div className="flex flex-col lg:flex-row gap-5 ml-11">
+                    <div className="flex flex-col lg:flex-row gap-5 ms-11">
                       {/* ── Answer Panel ──────────────────────────────────────── */}
                       <section className="flex-1 space-y-4 min-w-0">
                         <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium uppercase tracking-widest">
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                          Answer
+                          الإجابة
                         </div>
 
                         <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
@@ -327,8 +327,8 @@ export default function Home() {
                         <aside className="lg:w-72 space-y-4 shrink-0">
                           <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium uppercase tracking-widest">
                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                            Sources
-                            <span className="ml-auto text-zinc-700">{msg.sources.length}</span>
+                            المصادر
+                            <span className="ms-auto text-zinc-700">{msg.sources.length}</span>
                           </div>
                           <div className="space-y-2.5">
                             {msg.sources.map((src, i) => {
@@ -363,13 +363,13 @@ export default function Home() {
               ))}
 
               {/* Loading State / Error State for current request */}
-              {status === "loading" && (
+               {status === "loading" && (
                 <div className="flex flex-col gap-3">
-                   <div className="flex flex-col lg:flex-row gap-5 ml-11">
+                   <div className="flex flex-col lg:flex-row gap-5 ms-11">
                     <section className="flex-1 space-y-4 min-w-0">
                       <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium uppercase tracking-widest">
                         <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
-                        Thinking…
+                        جاري التفكير...
                       </div>
                       <div className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5">
                         <AnswerSkeleton />
@@ -378,7 +378,7 @@ export default function Home() {
                     <aside className="lg:w-72 space-y-4 shrink-0">
                       <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium uppercase tracking-widest">
                         <div className="w-1.5 h-1.5 rounded-full bg-zinc-600" />
-                        Sources
+                        المصادر
                       </div>
                       <div className="space-y-2.5">
                         <SourcesSkeleton />
@@ -389,7 +389,7 @@ export default function Home() {
               )}
 
               {status === "error" && (
-                <div className="flex flex-col gap-3 ml-11">
+                <div className="flex flex-col gap-3 ms-11">
                   <section className="flex-1 space-y-4 min-w-0">
                     <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-5">
                       <div className="flex flex-col gap-3">
@@ -411,9 +411,9 @@ export default function Home() {
               <div className="max-w-4xl mx-auto w-full relative">
                 {/* Follow-up chips for the latest AI message if success */}
                 {status === "success" && messages.length > 0 && messages[messages.length - 1].role === "ai" && (
-                  <div className="absolute bottom-full left-0 mb-4 ml-2 right-0 overflow-x-auto no-scrollbar">
+                  <div className="absolute bottom-full start-0 mb-4 ms-2 end-0 overflow-x-auto no-scrollbar">
                     <div className="flex flex-nowrap gap-2">
-                      {["Tell me more", "Give examples", "Simplify this", "Compare alternatives"].map((chip) => (
+                      {["أخبرني المزيد", "أعطني أمثلة", "بسط هذا", "مقارنة البدائل"].map((chip) => (
                         <button
                           key={chip}
                           onClick={() => {
@@ -494,7 +494,7 @@ function AnswerContent({ answer }: { answer: string }) {
         li: ({ children }) => <li className="leading-relaxed">{children}</li>,
         // Blockquote
         blockquote: ({ children }) => (
-          <blockquote className="border-l-4 border-violet-500/50 pl-4 py-1 my-3 text-zinc-400 italic bg-white/[0.02] rounded-r-lg">
+          <blockquote className="border-s-4 border-violet-500/50 ps-4 py-1 my-3 text-zinc-400 italic bg-white/[0.02] rounded-e-lg">
             {children}
           </blockquote>
         ),
@@ -519,7 +519,7 @@ function AnswerContent({ answer }: { answer: string }) {
         ),
         thead: ({ children }) => <thead className="bg-white/[0.05]">{children}</thead>,
         tr: ({ children }) => <tr className="border-b border-white/[0.06]">{children}</tr>,
-        th: ({ children }) => <th className="text-left px-3 py-2 text-zinc-200 font-semibold">{children}</th>,
+        th: ({ children }) => <th className="text-start px-3 py-2 text-zinc-200 font-semibold">{children}</th>,
         td: ({ children }) => <td className="px-3 py-2 text-zinc-300">{children}</td>,
       }}
     >
@@ -565,9 +565,9 @@ function SourcesSkeleton() {
 
 // ─── Focus Mode Options ────────────────────────────────────────────────────────
 const FOCUS_OPTIONS = [
-  { value: "web",      label: "🌐 General Web", description: "Standard web search across the internet" },
-  { value: "medical",  label: "🩺 Medical & Health", description: "Searches trusted medical journals like WHO and Mayo Clinic" },
-  { value: "academic", label: "🎓 Academic", description: "Searches peer-reviewed papers and universities" },
+  { value: "web",      label: "🌐 الويب العام", description: "بحث شامل في جميع أنحاء الإنترنت" },
+  { value: "medical",  label: "🩺 طب وصحة", description: "يبحث في المجلات الطبية الموثوقة مثل منظمة الصحة العالمية ومايو كلينيك" },
+  { value: "academic", label: "🎓 أكاديمي", description: "يبحث في الأبحاث والجامعات المراجعة من قبل النظراء" },
 ] as const;
 
 // ─── Search Bar ───────────────────────────────────────────────────────────────
@@ -686,7 +686,7 @@ function SearchBar({
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setInputFocused(true)}
           onBlur={() => setInputFocused(false)}
-          placeholder={disabled ? "Searching…" : "Type your search topic here..."}
+          placeholder={disabled ? "جاري البحث..." : "اكتب موضوع بحثك هنا..."}
           disabled={disabled}
           className={`flex-1 bg-transparent outline-none placeholder-zinc-600 text-white disabled:opacity-60 ${compact ? "text-sm" : "text-base"}`}
           autoComplete="off"
@@ -729,7 +729,7 @@ function SearchBar({
             <circle cx="12" cy="12" r="3" />
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
           </svg>
-          {showAdvanced ? "Hide Advanced Filters" : "Advanced Filters"}
+          {showAdvanced ? "إخفاء الفلاتر المتقدمة" : "فلاتر متقدمة"}
         </button>
       </div>
 
@@ -741,7 +741,7 @@ function SearchBar({
           <select
             value={selectedModel}
             onChange={(e) => setSelectedModel(e.target.value)}
-            className="appearance-none bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-xs font-medium rounded-lg pl-3 pr-7 py-1.5 outline-none hover:bg-white/[0.08] hover:text-white hover:border-white/[0.15] transition-all duration-200 cursor-pointer max-w-[150px] sm:max-w-[180px] truncate"
+            className="appearance-none bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-xs font-medium rounded-lg ps-3 pe-7 py-1.5 outline-none hover:bg-white/[0.08] hover:text-white hover:border-white/[0.15] transition-all duration-200 cursor-pointer max-w-[150px] sm:max-w-[180px] truncate"
           >
             {models.map(m => (
               <option key={m.id} value={m.id} className="bg-[#1a1a1a] text-zinc-300">
@@ -749,7 +749,7 @@ function SearchBar({
               </option>
             ))}
           </select>
-          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500 group-hover:text-zinc-300 transition-colors">
+          <div className="absolute end-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500 group-hover:text-zinc-300 transition-colors">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="m6 9 6 6 6-6" />
             </svg>
@@ -761,14 +761,14 @@ function SearchBar({
           <select
             value={siteFilter}
             onChange={(e) => setSiteFilter(e.target.value)}
-            className="appearance-none bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-xs font-medium rounded-lg pl-3 pr-7 py-1.5 outline-none hover:bg-white/[0.08] hover:text-white hover:border-white/[0.15] transition-all duration-200 cursor-pointer"
+            className="appearance-none bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-xs font-medium rounded-lg ps-3 pe-7 py-1.5 outline-none hover:bg-white/[0.08] hover:text-white hover:border-white/[0.15] transition-all duration-200 cursor-pointer"
           >
-            <option value="all" className="bg-[#1a1a1a] text-zinc-300">All Sites</option>
-            <option value="wikipedia.org" className="bg-[#1a1a1a] text-zinc-300">Wikipedia</option>
-            <option value="youtube.com" className="bg-[#1a1a1a] text-zinc-300">YouTube</option>
-            <option value="reddit.com" className="bg-[#1a1a1a] text-zinc-300">Reddit</option>
+            <option value="all" className="bg-[#1a1a1a] text-zinc-300">جميع المواقع</option>
+            <option value="wikipedia.org" className="bg-[#1a1a1a] text-zinc-300">ويكيبيديا</option>
+            <option value="youtube.com" className="bg-[#1a1a1a] text-zinc-300">يوتيوب</option>
+            <option value="reddit.com" className="bg-[#1a1a1a] text-zinc-300">ريديت</option>
           </select>
-          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500 group-hover:text-zinc-300 transition-colors">
+          <div className="absolute end-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500 group-hover:text-zinc-300 transition-colors">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="m6 9 6 6 6-6" />
             </svg>
@@ -780,14 +780,14 @@ function SearchBar({
           <select
             value={timeFilter}
             onChange={(e) => setTimeFilter(e.target.value)}
-            className="appearance-none bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-xs font-medium rounded-lg pl-3 pr-7 py-1.5 outline-none hover:bg-white/[0.08] hover:text-white hover:border-white/[0.15] transition-all duration-200 cursor-pointer"
+            className="appearance-none bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-xs font-medium rounded-lg ps-3 pe-7 py-1.5 outline-none hover:bg-white/[0.08] hover:text-white hover:border-white/[0.15] transition-all duration-200 cursor-pointer"
           >
-            <option value="" className="bg-[#1a1a1a] text-zinc-300">Any time</option>
-            <option value="qdr:d" className="bg-[#1a1a1a] text-zinc-300">Past 24 Hours</option>
-            <option value="qdr:w" className="bg-[#1a1a1a] text-zinc-300">Past Week</option>
-            <option value="qdr:m" className="bg-[#1a1a1a] text-zinc-300">Past Month</option>
+            <option value="" className="bg-[#1a1a1a] text-zinc-300">أي وقت</option>
+            <option value="qdr:d" className="bg-[#1a1a1a] text-zinc-300">آخر 24 ساعة</option>
+            <option value="qdr:w" className="bg-[#1a1a1a] text-zinc-300">آخر أسبوع</option>
+            <option value="qdr:m" className="bg-[#1a1a1a] text-zinc-300">آخر شهر</option>
           </select>
-          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500 group-hover:text-zinc-300 transition-colors">
+          <div className="absolute end-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500 group-hover:text-zinc-300 transition-colors">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="m6 9 6 6 6-6" />
             </svg>

@@ -74,7 +74,7 @@ export default function AuthButton() {
             />
           )}
           <span className="text-sm font-medium text-gray-200">
-            {user.displayName || "User"}
+            {user.displayName || "مستخدم"}
           </span>
         </div>
         <div className="w-[1px] h-4 bg-white/20"></div>
@@ -82,7 +82,7 @@ export default function AuthButton() {
           onClick={handleSignOut}
           className="text-sm px-4 py-1.5 rounded-full font-semibold transition-all duration-300 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 border border-rose-500/20 hover:border-rose-500/40 focus:outline-none focus:ring-2 focus:ring-rose-500/50"
         >
-          Sign Out
+          تسجيل الخروج
         </button>
       </div>
     );
@@ -106,7 +106,7 @@ export default function AuthButton() {
         </svg>
       </div>
 
-      <span className="relative z-10 tracking-wide text-sm">Sign in with Google</span>
+      <span className="relative z-10 tracking-wide text-sm">تسجيل الدخول باستخدام Google</span>
     </button>
   );
 }
