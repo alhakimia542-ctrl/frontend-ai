@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://alhakimai.com'),
   title: {
-    default: "Kashef AI | محرك كاشف الذكي للبحث",
-    template: "%s | Kashef AI",
+    default: "كاشف | Kashef AI",
+    template: "%s | كاشف AI",
   },
-  description: "محرك بحث متقدم مدعوم بالذكاء الاصطناعي، يمنحك إجابات فورية وموثقة من الويب مباشرة. Advanced AI search engine providing instant, cited answers from the web.",
-  keywords: ['Alhakimi AI Search', 'Search AI', 'AI Search Engine', 'محرك بحث ذكي', 'الذكاء الاصطناعي', 'Ahmed Alhakimi', 'Kashef AI', 'كاشف', 'محرك بحث كاشف'],
+  description: "محرك كاشف الذكي للبحث والتحليل الفوري المدعوم بالذكاء الاصطناعي.",
+  keywords: ["كاشف", "Kashef AI", "محرك بحث ذكي", "كاشف للبحث", "AI Search Engine", "Alhakim AI", "الذكاء الاصطناعي", "Ahmed Alhakimi"],
   authors: [{ name: "Ahmed Alhakimi" }],
   creator: "Ahmed Alhakimi",
   openGraph: {
@@ -45,7 +45,26 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "كاشف AI",
+              "alternateName": ["Kashef AI", "كاشف"],
+              "url": "https://alhakimai.com",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://alhakimai.com/?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+      </body>
     </html>
   );
 }

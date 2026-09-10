@@ -214,7 +214,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white flex flex-col font-[var(--font-geist-sans)]">
+    <div className="min-h-screen bg-[#0d0d0d] text-white flex flex-col font-[var(--font-geist-sans)] overflow-x-hidden">
       <HistorySidebar 
         isOpen={isSidebarOpen} 
         onClose={() => setIsSidebarOpen(false)} 
@@ -224,9 +224,10 @@ export default function Home() {
       />
 
       {/* ── Header ────────────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/[0.06] bg-[#0d0d0d]/80 backdrop-blur-md">
-        <div className="flex items-center gap-2.5">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <header className="sticky top-0 z-50 flex items-center justify-between gap-2 px-3 sm:px-6 py-3 sm:py-4 border-b border-white/[0.06] bg-[#0d0d0d]/80 backdrop-blur-md">
+        {/* Logo */}
+        <div className="flex items-center shrink-0">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="luxury-gold" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#F59E0B" />
@@ -239,22 +240,23 @@ export default function Home() {
           </svg>
         </div>
 
-        <nav className="flex items-center gap-3">
+        {/* Nav actions */}
+        <nav className="flex items-center gap-1.5 sm:gap-3">
           <button 
             onClick={() => setIsSidebarOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
+            className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-            History
+            <span className="hidden xs:inline sm:inline">History</span>
           </button>
           <button
             onClick={handleNewSearch}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white transition-all duration-200 shadow-md shadow-violet-500/20"
+            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-4 py-1.5 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-500 text-white transition-all duration-200 shadow-md shadow-violet-500/20"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg>
-            New Search
+            <span className="hidden xs:inline sm:inline">New Search</span>
           </button>
-          <div className="w-[1px] h-6 bg-white/10 hidden sm:block mx-1"></div>
+          <div className="w-[1px] h-5 bg-white/10 hidden sm:block mx-0.5"></div>
           <AuthButton />
         </nav>
       </header>
@@ -264,33 +266,35 @@ export default function Home() {
         {!submitted ? (
           /* ── Landing ──────────────────────────────────────────────────── */
           <div className="flex-1 flex flex-col items-center justify-center px-4 py-16 gap-10">
-            <div className="text-center space-y-3">
-              <h1 className="text-5xl sm:text-6xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent leading-tight">
+            <div className="text-center space-y-3 px-4">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent leading-tight">
                 Discover knowledge intelligently.
               </h1>
-              <p className="text-zinc-500 text-lg max-w-md mx-auto leading-relaxed">
+              <p className="text-zinc-500 text-sm sm:text-base lg:text-lg max-w-md mx-auto leading-relaxed">
                 An advanced AI search engine providing accurate, source-backed results in real-time.
               </p>
             </div>
 
-            <SearchBar
-              query={query}
-              setQuery={setQuery}
-              onSubmit={handleSearch}
-              inputRef={inputRef}
-              inputFocused={inputFocused}
-              setInputFocused={setInputFocused}
-              disabled={false}
-              siteFilter={siteFilter}
-              setSiteFilter={setSiteFilter}
-              timeFilter={timeFilter}
-              setTimeFilter={setTimeFilter}
-              selectedModel={selectedModel}
-              setSelectedModel={setSelectedModel}
-              models={models}
-              focusMode={focusMode}
-              setFocusMode={setFocusMode}
-            />
+            <div className="w-full px-4 sm:px-0">
+              <SearchBar
+                query={query}
+                setQuery={setQuery}
+                onSubmit={handleSearch}
+                inputRef={inputRef}
+                inputFocused={inputFocused}
+                setInputFocused={setInputFocused}
+                disabled={false}
+                siteFilter={siteFilter}
+                setSiteFilter={setSiteFilter}
+                timeFilter={timeFilter}
+                setTimeFilter={setTimeFilter}
+                selectedModel={selectedModel}
+                setSelectedModel={setSelectedModel}
+                models={models}
+                focusMode={focusMode}
+                setFocusMode={setFocusMode}
+              />
+            </div>
 
 
           </div>
@@ -616,7 +620,7 @@ function SearchBar({
       
       {/* ── Focus Mode Tabs ── */}
       <div
-        className="flex items-center self-center sm:self-start rounded-full border border-white/[0.08] bg-white/[0.03] p-1 mb-1"
+        className="flex items-center self-center sm:self-start rounded-full border border-white/[0.08] bg-white/[0.03] p-1 mb-1 overflow-x-auto no-scrollbar"
         role="tablist"
         aria-label="Focus mode"
       >
