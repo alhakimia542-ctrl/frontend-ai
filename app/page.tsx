@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import AuthButton from "../components/AuthButton";
+import AuthModal from "../components/AuthModal";
 import HistorySidebar, { ChatSession } from "../components/HistorySidebar";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { doc, setDoc, updateDoc, collection, serverTimestamp } from "firebase/firestore";
@@ -41,6 +42,7 @@ export default function Home() {
   const [currentChatId, setCurrentChatId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   // Input & Status state
   const [query, setQuery] = useState("");
@@ -222,6 +224,7 @@ export default function Home() {
         currentChatId={currentChatId}
         onSelectChat={handleSelectChat}
       />
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
 
       {/* ── Header ────────────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-50 flex items-center justify-between gap-2 px-3 sm:px-6 py-3 sm:py-4 border-b border-white/[0.06] bg-[#0d0d0d]/80 backdrop-blur-md">
@@ -247,7 +250,13 @@ export default function Home() {
           {/* Action Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2">
             <button 
-              onClick={() => setIsSidebarOpen(true)}
+              onClick={() => {
+                if (!user) {
+                  setIsAuthModalOpen(true);
+                } else {
+                  setIsSidebarOpen(true);
+                }
+              }}
               className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-lg text-sm text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
@@ -263,9 +272,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Left Side (End): Auth (Temporarily Hidden) */}
+        {/* Left Side (End): Empty space to keep layout balanced if needed */}
         <div className="flex items-center shrink-0">
-          {/* <AuthButton /> */}
         </div>
       </header>
 
