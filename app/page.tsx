@@ -58,7 +58,7 @@ export default function Home() {
   
   // Models
   const [models, setModels] = useState<{ id: string; name: string }[]>([
-    { id: "alhakimia54/Kashef-Qwen-2.5-3B", name: "Kashef Qwen 2.5 (Custom)" },
+    { id: "alhakimia54/Kashef-Qwen-2.5-3B", name: "Kashef AI" },
   ]);
   const [selectedModel, setSelectedModel] = useState("alhakimia54/Kashef-Qwen-2.5-3B");
 
