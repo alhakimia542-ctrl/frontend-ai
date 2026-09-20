@@ -421,25 +421,6 @@ export default function Home() {
             {/* Input Fixed at Bottom */}
             <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d] to-transparent z-10 pt-16">
               <div className="max-w-4xl mx-auto w-full relative">
-                {/* Follow-up chips for the latest AI message if success */}
-                {status === "success" && messages.length > 0 && messages[messages.length - 1].role === "ai" && (
-                  <div className="absolute bottom-full start-0 mb-4 ms-2 end-0 overflow-x-auto no-scrollbar">
-                    <div className="flex flex-nowrap gap-2">
-                      {["أخبرني المزيد", "أعطني أمثلة", "بسط هذا", "مقارنة البدائل"].map((chip) => (
-                        <button
-                          key={chip}
-                          onClick={() => {
-                            const q = `${chip}`;
-                            handleSearch(q);
-                          }}
-                          className="text-sm whitespace-nowrap px-3 py-1.5 rounded-lg border border-white/[0.07] bg-[#1a1a1a] shadow-lg text-zinc-400 hover:text-white hover:border-violet-500/40 hover:bg-violet-500/10 transition-all duration-200"
-                        >
-                          {chip}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
                 <SearchBar
                   query={query}
                   setQuery={setQuery}
