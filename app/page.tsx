@@ -58,13 +58,9 @@ export default function Home() {
   
   // Models
   const [models, setModels] = useState<{ id: string; name: string }[]>([
-    { id: "google/gemini-2.0-flash-exp:free", name: "Gemini 2.0 Flash (Default)" },
-    { id: "google/gemini-1.5-flash", name: "Gemini 1.5 Flash" },
-    { id: "google/gemini-1.5-pro", name: "Gemini 1.5 Pro" },
-    { id: "anthropic/claude-sonnet-4-5", name: "Claude Sonnet 4.5" },
-    { id: "meta-llama/llama-3.2-3b-instruct", name: "Llama 3.2 3B" },
+    { id: "alhakimia54/Kashef-Qwen-2.5-3B", name: "Kashef Qwen 2.5 (Custom)" },
   ]);
-  const [selectedModel, setSelectedModel] = useState("google/gemini-2.0-flash-exp:free");
+  const [selectedModel, setSelectedModel] = useState("alhakimia54/Kashef-Qwen-2.5-3B");
 
   // Auto-scroll ref
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -79,19 +75,19 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
-  // Fetch models on load
-  useEffect(() => {
-    fetch(API_URL.replace("/ask", "/models"))
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setModels(data);
-        } else if (data && Array.isArray(data.data) && data.data.length > 0) {
-          setModels(data.data);
-        }
-      })
-      .catch((err) => console.error("Failed to fetch models:", err));
-  }, []);
+  // Fetch models on load - Disabled to only use custom model
+  // useEffect(() => {
+  //   fetch(API_URL.replace("/ask", "/models"))
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (Array.isArray(data) && data.length > 0) {
+  //         setModels(data);
+  //       } else if (data && Array.isArray(data.data) && data.data.length > 0) {
+  //         setModels(data.data);
+  //       }
+  //     })
+  //     .catch((err) => console.error("Failed to fetch models:", err));
+  // }, []);
 
   // Focus input on landing
   useEffect(() => {
